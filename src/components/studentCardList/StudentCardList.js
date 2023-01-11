@@ -20,7 +20,7 @@ const StudentCardList = () => {
     return (
         <div className="studentCardList">
           {students.map(student => {
-            return (<StudentCard />)
+            return (<StudentCard student={student} />)
           })}
         </div>
     )
