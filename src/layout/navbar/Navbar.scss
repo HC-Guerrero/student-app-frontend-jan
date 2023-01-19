@@ -14,7 +14,7 @@
 
     &__logo {
         font-weight: 600;
-        font-size: 2em;
+        font-size: 1.4em;
     }
 
     &__items {
@@ -33,9 +33,8 @@
 
     @media only screen and (max-width: 440px){
         
-        padding: 0;
-        // position: relative;
-        // z-index: 10;
+        padding: 10px 0;
+        line-height: 40px;
         
         &__container {
             padding: 10px 15px;
@@ -47,13 +46,16 @@
 
         &__items {
             display: none;
-            position: absolute;
-            display: block;
-            top: 27px;
-            left: 0;
-            width: 100%;
-            padding: 0;
-            z-index: 10;
+
+            &-active {
+                position: absolute;
+                display: block;
+                top: 50px;
+                left: 0;
+                width: 100%;
+                padding: 0;
+                z-index: 10;
+            }
         
         li {
             border-bottom: 1px solid #b6b6b6;
@@ -70,13 +72,18 @@
         }
         
         &__overlay {
-            width: 100%;
-            height: 100vh;
-            display: block;
-            left: 0;
-            top: 43px;
-            background-color: rgba(1, 1, 1, .5);
-            position: absolute;
+
+            display: none;
+
+            &-active {
+                width: 100%;
+                height: 100vh;
+                display: block;
+                left: 0;
+                top: 66px;
+                background-color: rgba(1, 1, 1, .3);
+                position: absolute;
+            }
 
         }
     }
