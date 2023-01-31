@@ -1,4 +1,6 @@
+@import 'designUtils/colors.scss';
+
 body {
     font-family: -apple-system,BlinkMacSystemFont,Raleway,Segoe UI,Roboto,Oxygen,Ubuntu,Cantarell,Fira Sans,Droid Sans,Helvetica Neue,sans-serif;
-    background-color: #efefef;
+    background-color: $background-gray;
 }

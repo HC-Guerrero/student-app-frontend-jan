@@ -2,6 +2,8 @@ import React, {useState} from 'react'
 
 import {Add, Remove} from '@mui/icons-material';
 
+import EmptyView from '../emptyView/EmptyView';
+
 import './StudentCard.scss';
 
 const StudentCard = ({student}) => {
@@ -20,6 +22,10 @@ const StudentCard = ({student}) => {
     }
   }
 
+  // BEM
+  //B - block
+  //E - element
+  //M - modifier
   return (
     <div className="studentCard">
         <div className="studentCard__image">
@@ -37,6 +43,7 @@ const StudentCard = ({student}) => {
               {grades.map((grade,index) => {
                 return (<div className="studentCard__grade" key={index+1}><span>Test {index+1}:</span><span>{grade}%</span></div>)
               })}
+              {grades.length === 0 && <EmptyView message="No grades for this student." />}
             </div>
             </div>
         </div>
