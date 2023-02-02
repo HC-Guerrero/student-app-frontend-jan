@@ -1,4 +1,6 @@
-import React, {useState} from 'react'
+import React, {useState, useEffect} from 'react'
+
+// import { useParams } from "react-router-dom";
 
 import {Add, Remove} from '@mui/icons-material';
 
@@ -6,13 +8,34 @@ import EmptyView from '../emptyView/EmptyView';
 
 import './StudentCard.scss';
 
-const StudentCard = ({student}) => {
+const StudentCard = ({studentData, studentId}) => {
 
-  const {firstName, lastName, email, company, skill, pic, grades} = student;
-
+  const [student, setStudent] = useState({})
   const [showGrades, setShowGrades] = useState(false);
 
-  const toggleGrades = () => {
+  useEffect(() => {
+    if(studentData){
+      setStudent(studentData);
+    } else {
+      fetch(`http://localhost:9000/students/${studentId}`)
+      .then(response => response.json())
+      .then(data => {
+        data.grades = [];
+        setStudent(data);
+      })
+    }
+    
+  }, [])
+
+  
+  const {firstName, lastName, email, company, skill, pic, grades} = student;
+  
+
+
+  const toggleGrades = (event) => {
+    event.stopPropagation();
+    event.preventDefault();
+
     if(!showGrades){
       // TODO: change plus icon to loader
 
@@ -40,16 +63,16 @@ const StudentCard = ({student}) => {
             <div>Company: {company}</div>
             <div>Skill: {skill}</div>
             <div className="studentCard__grades" style={{"display" : showGrades ? "block" : "none"}}>
-              {grades.map((grade,index) => {
+              {grades &&  grades.length > 0 && grades.map((grade,index) => {
                 return (<div className="studentCard__grade" key={index+1}><span>Test {index+1}:</span><span>{grade}%</span></div>)
               })}
-              {grades.length === 0 && <EmptyView message="No grades for this student." />}
+              {grades && grades.length === 0 && <EmptyView message="No grades for this student." />}
             </div>
             </div>
         </div>
         <div className="studentCard__toggleGrades">
-            {!showGrades && <Add onClick={toggleGrades} fontSize="inherit"/>}
-            {showGrades && <Remove onClick={toggleGrades} fontSize="inherit"/>}
+            {!showGrades && <Add onClick={(event) => toggleGrades(event)} fontSize="inherit"/>}
+            {showGrades && <Remove onClick={(event) => toggleGrades(event)} fontSize="inherit"/>}
         </div>
     </div>
   )

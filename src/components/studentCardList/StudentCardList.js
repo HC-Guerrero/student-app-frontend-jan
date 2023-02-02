@@ -1,4 +1,6 @@
 import React, {useEffect, useState} from "react";
+import {Link} from 'react-router-dom';
+
 
 import SearchBar from "../searchBar/SearchBar";
 import StudentCard from '../studentCard/StudentCard';
@@ -41,9 +43,15 @@ const StudentCardList = () => {
     return (
         <div className="studentCardList">
           <SearchBar searchTerm={searchTerm} setSearchTerm={setSearchTerm} />
-          {filteredStudentList.map(student => {
-            return (<StudentCard student={student} />)
-          })}
+          <div className="studentCardList__container">
+            {filteredStudentList.map((student, idx) => {
+              return (
+                <Link to={`/students/${student.id}`} key={idx+1}>
+                  <StudentCard studentData={student}  />
+                </Link>
+              )
+            })}
+          </div>
           {loading && <div>Loading...</div>}
           {!loading && filteredStudentList.length === 0 && <EmptyView styleKey="bold" message="No Students Found"/>}
         </div>

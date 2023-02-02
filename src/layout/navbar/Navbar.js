@@ -1,4 +1,6 @@
-import React, {useState} from 'react'
+import React, {useState} from 'react';
+
+import {Link} from 'react-router-dom';
 
 import './Navbar.scss';
 
@@ -13,7 +15,11 @@ const Navbar = () => {
     return (
         <div className="navbar">
             <div className="navbar__container">
-                <div className="navbar__logo">Student App</div>
+                <div className="navbar__logo">
+                    <Link to="/">
+                        Student App
+                    </Link>
+                </div>
                 <ul className={mobileLinksDisplayed ? 'navbar__items navbar__items-active' : 'navbar__items'}>
                     <li>Students</li>
                     <li>About </li>
