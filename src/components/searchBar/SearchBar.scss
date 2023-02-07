@@ -18,4 +18,10 @@
             border-bottom: 2px gray solid;           
         }
     }
+
+    @media only screen and (max-width: 440px){
+        &__input {
+            width: -webkit-fill-available;
+        }
+    }  
 }

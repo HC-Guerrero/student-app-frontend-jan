@@ -1,7 +1,6 @@
 
 .studentCard {
     display: flex;
-    column-gap: 25px;
     min-height: 160px;
     padding: 20px 10px;
     background-color: white;
@@ -12,6 +11,7 @@
     &__image {
       width: 100px;
       height: 100px;
+      margin: 5px;
       
       img {
         border-radius: 50%;
@@ -20,7 +20,8 @@
     }
     
     &__profile {
-      width: 80%;
+      width: 70%;
+      margin-left: 20px;
     }
     
     &__name {
@@ -58,8 +59,15 @@
             color: black;
         }
     }
-  }
 
-  // .studentCard .studentCard__image {
-  //   border: 1px solid black;
-  // }
+    // Media query
+    @media only screen and (max-width: 440px){
+      &__profile {
+        margin-left: 0;
+        width: 60%;
+      }
+      &__name {
+        font-size: 20px;
+      }
+    }
+  }
