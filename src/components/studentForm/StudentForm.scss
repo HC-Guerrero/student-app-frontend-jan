@@ -1,0 +1,23 @@
+.studentForm {
+
+    background-color: white;
+    padding: 20px;
+
+    &__title {
+        font-size: 1.7em;
+        margin-bottom: 15px;
+    }
+
+    &__inputs {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 10px;
+    }
+
+    &__button {
+        display: flex;
+        justify-content: end;
+        margin-top: 15px;
+    }
+
+}

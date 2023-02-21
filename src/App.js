@@ -3,11 +3,10 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 // Layout components
 import Navbar from './layout/navbar/Navbar';
 
-// Components
-import StudentCardList from './components/studentCardList/StudentCardList';
-
 // Pages
 import StudentDetail from "./pages/StudentDetail";
+import Home from "./pages/Home";
+import AddStudent from "./pages/AddStudent";
 
 import './App.scss';
 
@@ -18,7 +17,8 @@ function App() {
       <Router>
         <Navbar />
         <Routes>
-          <Route path="/" element={ <StudentCardList />}></Route>
+          <Route path="/" element={ <Home />}></Route>
+          <Route path="/students/new" element={ <AddStudent />}></Route>
           <Route path="/students/:studentId" element={ <StudentDetail/>}></Route>
         </Routes>
       </Router>
