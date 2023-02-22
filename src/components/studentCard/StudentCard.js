@@ -28,7 +28,7 @@ const StudentCard = ({studentData, studentId}) => {
   }, [])
 
   
-  const {firstName, lastName, email, company, skill, pic, grades} = student;
+  const {first_name: firstName, last_name: lastName, email, company, skill, pic, grades} = student;
   
 
 
