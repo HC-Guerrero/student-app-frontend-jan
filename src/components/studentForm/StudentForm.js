@@ -43,9 +43,7 @@ const StudentForm = () => {
                 
 
                 // redirect to student detail page
-                navigate(`/students/${data.id}`)
-                // show success
-                // clear form - maybe? 
+                navigate(`/students/${data.id}`, {state:{isNewlyCreated: true}})
             })
     }
 
