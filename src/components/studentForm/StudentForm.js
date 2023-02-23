@@ -20,9 +20,13 @@ const StudentForm = () => {
     const [pic, setPic] = useState('');
     const [emailIsValid, setEmailIsValid] = useState(false);
     const [errorMessage, setErrorMessage] = useState('');
+    const [loader, setLoader] = useState(false);
 
 
     const submitStudent = () => {
+
+        setErrorMessage ('')
+        setLoader(true);
 
         // post to backend/students
         const reqOptions = {
@@ -36,15 +40,20 @@ const StudentForm = () => {
         fetch('http://localhost:9000/students', reqOptions)
             .then(res => res.json())
             .then(data => {
-                // if(data.status === 'error'){
-                //     console.log('error')
-                //     setErrorMessage ('An error occurred.')
-                // } 
-                
+               
+                setLoader(false);
 
-                // redirect to student detail page
-                navigate(`/students/${data.id}`, {state:{isNewlyCreated: true}})
-            })
+                if(data.status !== 'success'){
+                   
+                    setErrorMessage ('An error from backend.')
+                } else {
+                    // redirect to student detail page
+                    navigate(`/students/${data.id}`, {state:{isNewlyCreated: true}});
+                }
+            }).catch((err)=> {
+                setLoader(false);
+                setErrorMessage ('An error occurred.')
+            });
     }
 
     const validateEmail = () => {
@@ -126,7 +135,7 @@ const StudentForm = () => {
                 disabled={!emailIsValid}
                 onClick={submitStudent}
                 >
-                    Add Student
+                    {loader ? 'Loading...' : 'Add Student'}
             </Button>
         </div>
        
