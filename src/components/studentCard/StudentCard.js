@@ -62,11 +62,21 @@ const StudentCard = ({studentData, studentId}) => {
             <div>Email: {email}</div>
             <div>Company: {company}</div>
             <div>Skill: {skill}</div>
-            <div className="studentCard__grades" style={{"display" : showGrades ? "block" : "none"}}>
+            <div 
+              className="studentCard__grades" 
+              style={{"display" : showGrades ? "block" : "none"}}
+            >
               {grades &&  grades.length > 0 && grades.map((grade,index) => {
-                return (<div className="studentCard__grade" key={index+1}><span>Test {index+1}:</span><span>{grade}%</span></div>)
+                return (
+                  <div 
+                    className="studentCard__grade" 
+                    key={index+1}
+                  >
+                    <span>Test {index+1}:</span>
+                    <span>{grade}%</span>
+                  </div>)
               })}
-              {grades && grades.length === 0 && <EmptyView message="No grades for this student." />}
+              {(!grades || grades.length === 0) && <EmptyView message="No grades for this student." />}
             </div>
             </div>
         </div>
