@@ -9,3 +9,20 @@ body {
     max-width: 800px;
     margin: 40px auto;
 }
+
+
+.boxContainer {
+    display: flex;
+    gap: 10px;
+}
+
+   
+.box {
+    height: 150px;
+    width: 150px;
+    background-color: blue;
+
+    &-active {
+        background-color: red;
+    }
+}

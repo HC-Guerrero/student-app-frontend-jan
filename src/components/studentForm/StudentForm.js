@@ -5,7 +5,6 @@ import TextField from '@mui/material/TextField';
 import { Button } from '@mui/material';
 
 import './StudentForm.scss';
-import { useBadge } from '@mui/base';
 
 const StudentForm = () => {
 
@@ -25,7 +24,7 @@ const StudentForm = () => {
 
     const submitStudent = () => {
 
-        setErrorMessage ('')
+        setErrorMessage ('');
         setLoader(true);
 
         // post to backend/students
@@ -40,15 +39,15 @@ const StudentForm = () => {
         fetch('http://localhost:9000/students', reqOptions)
             .then(res => res.json())
             .then(data => {
-               
                 setLoader(false);
 
                 if(data.status !== 'success'){
                    
-                    setErrorMessage ('An error from backend.')
+                    setErrorMessage ('An error from backend.');
                 } else {
+                    let studentData = data.payload;
                     // redirect to student detail page
-                    navigate(`/students/${data.id}`, {state:{isNewlyCreated: true}});
+                    navigate(`/students/${studentData.id}`, {state:{isNewlyCreated: true}});
                 }
             }).catch((err)=> {
                 setLoader(false);
