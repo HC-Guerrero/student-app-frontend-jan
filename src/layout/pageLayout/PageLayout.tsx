@@ -2,7 +2,11 @@ import React from 'react'
 
 import './PageLayout.scss';
 
-const PageLayout = ({children}) => {
+type PageLayoutProps = {
+  children: React.ReactNode
+}
+
+const PageLayout = ({children}: PageLayoutProps) => {
   return (
     <div className="pageLayout">
         {children}

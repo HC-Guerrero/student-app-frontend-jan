@@ -2,7 +2,12 @@ import React from 'react';
 
 import './SearchBar.scss';
 
-const SearchBar = ({searchTerm, setSearchTerm}) => { 
+type SearchBarProps = {
+    searchTerm: string;
+    setSearchTerm: (searchTerm: string) => void;
+}
+
+const SearchBar = ({searchTerm, setSearchTerm}: SearchBarProps) => { 
 
     return (
         <div className="searchBar">

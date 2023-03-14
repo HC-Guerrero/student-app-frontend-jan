@@ -5,13 +5,41 @@ import React, {useState, useEffect} from 'react'
 import {Add, Remove} from '@mui/icons-material';
 
 import EmptyView from '../emptyView/EmptyView';
+import Icon from '../icon/Icon';
 
 import './StudentCard.scss';
 
-const StudentCard = ({studentData, studentId}) => {
+type StudentCardProps = {
+  studentData?: any,
+  studentId?: string
+}
 
-  const [student, setStudent] = useState({})
+interface Student {
+  first_name?: string;
+  last_name?: string;
+  email?: string;
+  company?: string;
+  skill?: string;
+  pic?: string;
+  grades?: number[];
+}
+
+
+const StudentCard = ({studentData, studentId}: StudentCardProps) => {
+
+  const [student, setStudent] = useState<Student>({
+    first_name: '',
+    last_name: '',
+    email: '',
+    company: '',
+    skill: '',
+    pic: '',
+    grades:[]
+  });
+
   const [showGrades, setShowGrades] = useState(false);
+
+  const {first_name: firstName, last_name: lastName, email, company, skill, pic, grades} = student;
 
   useEffect(() => {
     if(studentData){
@@ -26,13 +54,9 @@ const StudentCard = ({studentData, studentId}) => {
     }
     
   }, [])
+ 
 
-  
-  const {first_name: firstName, last_name: lastName, email, company, skill, pic, grades} = student;
-  
-
-
-  const toggleGrades = (event) => {
+  const toggleGrades = (event: React.MouseEvent<HTMLDivElement>) => {
     event.stopPropagation();
     event.preventDefault();
 
@@ -81,8 +105,16 @@ const StudentCard = ({studentData, studentId}) => {
             </div>
         </div>
         <div className="studentCard__toggleGrades">
-            {!showGrades && <Add onClick={(event) => toggleGrades(event)} fontSize="inherit"/>}
-            {showGrades && <Remove onClick={(event) => toggleGrades(event)} fontSize="inherit"/>}
+            {!showGrades && 
+            <Icon onClick={toggleGrades}>
+              <Add fontSize="inherit"/>
+            </Icon>
+            }
+            {showGrades && 
+             <Icon onClick={toggleGrades}>
+              <Remove fontSize="inherit"/>
+            </Icon>
+            }
         </div>
     </div>
   )

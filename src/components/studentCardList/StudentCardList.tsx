@@ -8,8 +8,20 @@ import EmptyView from "../emptyView/EmptyView";
 
 import './StudentCardList.scss';
 
+interface Student {
+  id?: string;
+  first_name?: string;
+  last_name?: string;
+  email?: string;
+  company?: string;
+  skill?: string;
+  pic?: string;
+  grades?: number[];
+}
+
+
 const StudentCardList = () => {
-    const [students, setStudents] = useState([]);
+    const [students, setStudents] = useState<Student []>([]);
     const [searchTerm, setSearchTerm] = useState('');
     const [loading, setLoading] = useState(false);
 
@@ -30,23 +42,24 @@ const StudentCardList = () => {
     // if there is a search term
     if(searchTerm){
       // make searchterm all lowercase
-      let searchTermLowerCase = searchTerm.toLowerCase();
+      const searchTermLowerCase = searchTerm.toLowerCase();
 
       // filter the list of students to only include those who have the search term in their name
       filteredStudentList = students.filter(student => {
-        const fullName = `${student.firstName} ${student.lastName}`;
+        const fullName = `${student.first_name} ${student.last_name}`;
         const fullNameLowerCase = fullName.toLowerCase();
         return fullNameLowerCase.includes(searchTermLowerCase);
       })
-    }
 
+    }
+    
     return (
         <div className="studentCardList">
           <SearchBar searchTerm={searchTerm} setSearchTerm={setSearchTerm} />
           <div className="studentCardList__container">
             {filteredStudentList.map((student, idx) => {
               return (
-                <Link to={`/students/${student.id}`} key={idx+1}>
+                <Link to={`/students/${student.id}`} key={student.first_name}>
                   <StudentCard studentData={student}  />
                 </Link>
               )
